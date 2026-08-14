@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A privacy-conscious portfolio showcase for an AI-assisted exam evaluation system."
+    />
+    <title>TraceGrade | Evidence-first AI evaluation</title>
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=ibm-plex-mono:500|manrope:400,500,600,700|source-serif-4:600,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#overview" aria-label="TraceGrade overview">
+          <span class="brand-mark" aria-hidden="true">T</span>
+          <span>
+            <strong>TraceGrade</strong>
+            <small>AI evaluation workspace</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <span class="synthetic-label">
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            Synthetic data only
+          </span>
+          <a
+            class="icon-button"
+            href="https://github.com/knightsccc/ai-exam-grading-showcase"
+            aria-label="View repository on GitHub"
+            title="View repository on GitHub"
+          >
+            <i data-lucide="github" aria-hidden="true"></i>
+          </a>
+        </div>
+      </header>
+
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <nav>
+          <button class="nav-item is-active" data-view="overview" type="button">
+            <i data-lucide="layout-dashboard" aria-hidden="true"></i>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" data-view="queue" type="button">
+            <i data-lucide="list-checks" aria-hidden="true"></i>
+            <span>Review queue</span>
+            <b>4</b>
+          </button>
+          <button class="nav-item" data-view="evaluation" type="button">
+            <i data-lucide="flask-conical" aria-hidden="true"></i>
+            <span>Evaluation lab</span>
+          </button>
+          <button class="nav-item" data-view="privacy" type="button">
+            <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+            <span>Privacy & audit</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span>Portfolio boundary</span>
+          <p>Production source, prompts, thresholds, and research data remain private.</p>
+        </div>
+      </aside>
+
+      <main id="main-content">
+        <section class="page-intro" id="overview">
+          <div>
+            <p class="eyebrow">Graduate thesis project / public showcase</p>
+            <h1>Evidence-first exam evaluation</h1>
+            <p class="intro-copy">
+              A human-in-the-loop workflow for OCR, rubric-based assessment,
+              model evaluation, and accountable final review.
+            </p>
+          </div>
+          <div class="intro-meta" aria-label="Project technology">
+            <span>Python</span>
+            <span>FastAPI</span>
+            <span>React</span>
+            <span>vLLM</span>
+          </div>
+        </section>
+
+        <section class="status-band" aria-label="Synthetic batch status">
+          <div>
+            <span class="metric-label">Synthetic responses</span>
+            <strong>48</strong>
+            <small>12 questions x 4 learners</small>
+          </div>
+          <div>
+            <span class="metric-label">Auto-evaluated</span>
+            <strong>44</strong>
+            <small>91.7% of the batch</small>
+          </div>
+          <div>
+            <span class="metric-label">Human review</span>
+            <strong>4</strong>
+            <small>Evidence needs confirmation</small>
+          </div>
+          <div>
+            <span class="metric-label">Pipeline state</span>
+            <strong class="state-value">
+              <span></span>
+              Ready
+            </strong>
+            <small>All services responding</small>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="queue-panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Review queue</p>
+                <h2>Cases that need a second look</h2>
+              </div>
+              <div class="segmented-control" aria-label="Filter review cases">
+                <button class="is-selected" type="button" data-filter="all">All</button>
+                <button type="button" data-filter="math">Math</button>
+                <button type="button" data-filter="language">Language</button>
+              </div>
+            </div>
+
+            <div class="case-list" role="list">
+              <button
+                class="case-row is-selected"
+                type="button"
+                role="listitem"
+                data-case="SYN-014"
+                data-subject="math"
+              >
+                <span class="case-id">SYN-014</span>
+                <span class="case-main">
+                  <strong>Algebraic reasoning</strong>
+                  <small>Q07 · partial derivation</small>
+                </span>
+                <span class="confidence is-warning">74%</span>
+                <span class="case-status">Notation check</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="case-row"
+                type="button"
+                role="listitem"
+                data-case="SYN-022"
+                data-subject="language"
+              >
+                <span class="case-id">SYN-022</span>
+                <span class="case-main">
+                  <strong>Short-answer evidence</strong>
+                  <small>Q03 · implicit support</small>
+                </span>
+                <span class="confidence">81%</span>
+                <span class="case-status">Evidence check</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="case-row"
+                type="button"
+                role="listitem"
+                data-case="SYN-031"
+                data-subject="math"
+              >
+                <span class="case-id">SYN-031</span>
+                <span class="case-main">
+                  <strong>Unit conversion</strong>
+                  <small>Q09 · final unit omitted</small>
+                </span>
+                <span class="confidence">86%</span>
+                <span class="case-status">Score boundary</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="case-row"
+                type="button"
+                role="listitem"
+                data-case="SYN-046"
+                data-subject="language"
+              >
+                <span class="case-id">SYN-046</span>
+                <span class="case-main">
+                  <strong>Claim alignment</strong>
+                  <small>Q11 · mixed relevance</small>
+                </span>
+                <span class="confidence">79%</span>
+                <span class="case-status">Rubric alignment</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <aside class="evidence-panel" aria-live="polite">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Selected case</p>
+                <h2 id="selected-case-title">SYN-014 · Q07</h2>
+              </div>
+              <span class="priority-label">Review</span>
+            </div>
+
+            <div class="score-line">
+              <div>
+                <span>Suggested score</span>
+                <strong id="suggested-score">7.5 / 10</strong>
+              </div>
+              <div>
+                <span>Confidence</span>
+                <strong id="selected-confidence">74%</strong>
+              </div>
+            </div>
+
+            <div class="evidence-trace" aria-label="Evaluation evidence trace">
+              <div class="trace-step is-complete">
+                <span><i data-lucide="scan-line" aria-hidden="true"></i></span>
+                <div>
+                  <strong>Input quality</strong>
+                  <small id="trace-input">Readable, slight skew corrected</small>
+                </div>
+              </div>
+              <div class="trace-step is-complete">
+                <span><i data-lucide="text-search" aria-hidden="true"></i></span>
+                <div>
+                  <strong>OCR evidence</strong>
+                  <small id="trace-ocr">Method and final value recovered</small>
+                </div>
+              </div>
+              <div class="trace-step is-complete">
+                <span><i data-lucide="list-tree" aria-hidden="true"></i></span>
+                <div>
+                  <strong>Rubric match</strong>
+                  <small id="trace-rubric">3 of 4 generic criteria supported</small>
+                </div>
+              </div>
+              <div class="trace-step is-current">
+                <span><i data-lucide="user-check" aria-hidden="true"></i></span>
+                <div>
+                  <strong>Human decision</strong>
+                  <small id="trace-review">Confirm notation-equivalent step</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-actions">
+              <button class="button-secondary" type="button" id="needs-context">
+                <i data-lucide="message-square-more" aria-hidden="true"></i>
+                Add note
+              </button>
+              <button class="button-primary" type="button" id="confirm-case">
+                <i data-lucide="check" aria-hidden="true"></i>
+                Confirm review
+              </button>
+            </div>
+            <p class="action-feedback" id="action-feedback" role="status"></p>
+          </aside>
+        </section>
+
+        <section class="architecture-band" id="evaluation">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">System boundary</p>
+              <h2>Traceable decisions, replaceable models</h2>
+            </div>
+            <a
+              href="https://github.com/knightsccc/ai-exam-grading-showcase#system-design"
+            >
+              Architecture notes
+              <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="architecture-flow">
+            <div>
+              <i data-lucide="file-scan" aria-hidden="true"></i>
+              <strong>Document intake</strong>
+              <span>Privacy and input-quality checks</span>
+            </div>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div>
+              <i data-lucide="cpu" aria-hidden="true"></i>
+              <strong>Model services</strong>
+              <span>OpenAI-compatible or local vLLM</span>
+            </div>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div>
+              <i data-lucide="scale" aria-hidden="true"></i>
+              <strong>Evaluation layer</strong>
+              <span>Rubric evidence and review routing</span>
+            </div>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div>
+              <i data-lucide="clipboard-check" aria-hidden="true"></i>
+              <strong>Human decision</strong>
+              <span>Auditable confirmation and export</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="principles-band" id="privacy">
+          <article>
+            <i data-lucide="shield" aria-hidden="true"></i>
+            <h3>Privacy by deployment</h3>
+            <p>
+              Sensitive workflows can route OCR and evaluation through local
+              model services instead of public endpoints.
+            </p>
+          </article>
+          <article>
+            <i data-lucide="git-compare-arrows" aria-hidden="true"></i>
+            <h3>Models are replaceable</h3>
+            <p>
+              A backend abstraction keeps product logic independent from a
+              single provider or model family.
+            </p>
+          </article>
+          <article>
+            <i data-lucide="badge-check" aria-hidden="true"></i>
+            <h3>Humans own the result</h3>
+            <p>
+              Uncertain or conflicting evidence is routed to review instead
+              of being hidden behind a single score.
+            </p>
+          </article>
+        </section>
+
+        <footer>
+          <p>
+            Public portfolio artifact. No student data, production prompts,
+            grading policies, or thesis source code are included.
+          </p>
+          <span>Built by Hao · 2026</span>
+        </footer>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

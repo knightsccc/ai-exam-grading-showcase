@@ -1,0 +1,14 @@
+{
+  "name": "ai-exam-grading-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public portfolio showcase for a privacy-conscious AI exam evaluation system.",
+  "scripts": {
+    "serve": "python -m http.server 4173 --bind 127.0.0.1",
+    "test": "python -m unittest discover -s tests -v",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
+  }
+}
