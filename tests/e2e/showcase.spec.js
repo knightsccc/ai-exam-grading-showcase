@@ -1,13 +1,16 @@
 const { expect, test } = require("@playwright/test");
 
-test("keeps the public boundary visible and supports review interaction", async ({
+test("defaults to Chinese, supports review interaction, and switches to English", async ({
   page,
 }) => {
   await page.goto("/");
 
-  await expect(page.getByText("Synthetic data only")).toBeVisible();
+  await expect(page.locator(".synthetic-label")).toBeVisible();
+  await expect(page.locator(".synthetic-label")).toContainText(
+    "仅使用合成数据",
+  );
   await expect(
-    page.getByText("Public portfolio artifact.", { exact: false }),
+    page.getByText("公开脱敏项目展示", { exact: false }),
   ).toBeVisible();
 
   await page.locator('[data-case="SYN-031"]').click();
@@ -24,7 +27,18 @@ test("keeps the public boundary visible and supports review interaction", async 
 
   await page.locator("#confirm-case").click();
   await expect(page.locator("#action-feedback")).toContainText(
-    "Synthetic review confirmed",
+    "已确认这条合成复核记录",
+  );
+
+  await page.locator('[data-language="en"]').click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Evidence-first exam evaluation",
+  );
+  await expect(page.locator(".synthetic-label")).toContainText(
+    "Synthetic data only",
+  );
+  await expect(page.locator("#trace-input")).toHaveText(
+    "Clear response region",
   );
 });
 

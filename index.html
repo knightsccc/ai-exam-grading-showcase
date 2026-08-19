@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A privacy-conscious portfolio showcase for an AI-assisted exam evaluation system."
+      content="面向 AI 智能阅卷与大模型评测的隐私友好型项目展示。"
     />
-    <title>TraceGrade | Evidence-first AI evaluation</title>
+    <title>TraceGrade | 证据优先的 AI 智能阅卷</title>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link
-      href="https://fonts.bunny.net/css?family=ibm-plex-mono:500|manrope:400,500,600,700|source-serif-4:600,700"
+      href="https://fonts.bunny.net/css?family=ibm-plex-mono:500|manrope:400,500,600,700|noto-sans-sc:400,500,600,700|source-serif-4:600,700"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -19,68 +19,93 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="#overview" aria-label="TraceGrade overview">
+        <a
+          class="brand"
+          href="#overview"
+          aria-label="TraceGrade 项目概览"
+          data-i18n-aria-label="brandAria"
+        >
           <span class="brand-mark" aria-hidden="true">T</span>
           <span>
             <strong>TraceGrade</strong>
-            <small>AI evaluation workspace</small>
+            <small data-i18n="brandSubtitle">智能评测工作台</small>
           </span>
         </a>
 
         <div class="topbar-actions">
           <span class="synthetic-label">
             <i data-lucide="shield-check" aria-hidden="true"></i>
-            Synthetic data only
+            <span data-i18n="syntheticOnly">仅使用合成数据</span>
           </span>
+          <div
+            class="language-switch"
+            role="group"
+            aria-label="语言"
+            data-i18n-aria-label="languageAria"
+          >
+            <button class="is-selected" type="button" data-language="zh-CN">
+              中文
+            </button>
+            <button type="button" data-language="en">EN</button>
+          </div>
           <a
             class="icon-button"
             href="https://github.com/knightsccc/ai-exam-grading-showcase"
-            aria-label="View repository on GitHub"
-            title="View repository on GitHub"
+            aria-label="在 GitHub 查看脱敏仓库"
+            title="在 GitHub 查看脱敏仓库"
+            data-i18n-aria-label="githubAria"
+            data-i18n-title="githubAria"
           >
             <i data-lucide="github" aria-hidden="true"></i>
           </a>
         </div>
       </header>
 
-      <aside class="sidebar" aria-label="Workspace navigation">
+      <aside
+        class="sidebar"
+        aria-label="工作台导航"
+        data-i18n-aria-label="workspaceNavAria"
+      >
         <nav>
           <button class="nav-item is-active" data-view="overview" type="button">
             <i data-lucide="layout-dashboard" aria-hidden="true"></i>
-            <span>Overview</span>
+            <span data-i18n="navOverview">项目概览</span>
           </button>
           <button class="nav-item" data-view="queue" type="button">
             <i data-lucide="list-checks" aria-hidden="true"></i>
-            <span>Review queue</span>
+            <span data-i18n="navQueue">复核队列</span>
             <b>4</b>
           </button>
           <button class="nav-item" data-view="evaluation" type="button">
             <i data-lucide="flask-conical" aria-hidden="true"></i>
-            <span>Evaluation lab</span>
+            <span data-i18n="navEvaluation">评测实验</span>
           </button>
           <button class="nav-item" data-view="privacy" type="button">
             <i data-lucide="lock-keyhole" aria-hidden="true"></i>
-            <span>Privacy & audit</span>
+            <span data-i18n="navPrivacy">隐私与审计</span>
           </button>
         </nav>
 
         <div class="sidebar-note">
-          <span>Portfolio boundary</span>
-          <p>Production source, prompts, thresholds, and research data remain private.</p>
+          <span data-i18n="portfolioBoundary">公开展示边界</span>
+          <p data-i18n="portfolioBoundaryCopy">
+            生产源码、提示词、阈值和研究数据保持私有。
+          </p>
         </div>
       </aside>
 
       <main id="main-content">
         <section class="page-intro" id="overview">
           <div>
-            <p class="eyebrow">Graduate thesis project / public showcase</p>
-            <h1>Evidence-first exam evaluation</h1>
-            <p class="intro-copy">
-              A human-in-the-loop workflow for OCR, rubric-based assessment,
-              model evaluation, and accountable final review.
+            <p class="eyebrow" data-i18n="eyebrow">
+              硕士毕业设计 / 公开脱敏展示
+            </p>
+            <h1 data-i18n="heroTitle">证据优先的智能试卷评测</h1>
+            <p class="intro-copy" data-i18n="heroCopy">
+              串联 OCR、评分规则、大模型判断、模型评测与人工复核，让每个分数都有依据、每个异常都有去向。
             </p>
           </div>
-          <div class="intro-meta" aria-label="Project technology">
+          <div class="intro-meta" aria-label="项目技术栈">
             <span>Python</span>
             <span>FastAPI</span>
             <span>React</span>
@@ -88,29 +113,37 @@
           </div>
         </section>
 
-        <section class="status-band" aria-label="Synthetic batch status">
+        <section
+          class="status-band"
+          aria-label="合成批次状态"
+          data-i18n-aria-label="batchStatusAria"
+        >
           <div>
-            <span class="metric-label">Synthetic responses</span>
+            <span class="metric-label" data-i18n="metricResponses">
+              合成答题记录
+            </span>
             <strong>48</strong>
-            <small>12 questions x 4 learners</small>
+            <small data-i18n="metricResponsesNote">12 道题 × 4 名虚拟学生</small>
           </div>
           <div>
-            <span class="metric-label">Auto-evaluated</span>
+            <span class="metric-label" data-i18n="metricAuto">自动评阅</span>
             <strong>44</strong>
-            <small>91.7% of the batch</small>
+            <small data-i18n="metricAutoNote">占本批次的 91.7%</small>
           </div>
           <div>
-            <span class="metric-label">Human review</span>
+            <span class="metric-label" data-i18n="metricReview">人工复核</span>
             <strong>4</strong>
-            <small>Evidence needs confirmation</small>
+            <small data-i18n="metricReviewNote">评分证据需要确认</small>
           </div>
           <div>
-            <span class="metric-label">Pipeline state</span>
+            <span class="metric-label" data-i18n="metricPipeline">
+              处理链路状态
+            </span>
             <strong class="state-value">
               <span></span>
-              Ready
+              <b data-i18n="metricReady">就绪</b>
             </strong>
-            <small>All services responding</small>
+            <small data-i18n="metricReadyNote">全部服务响应正常</small>
           </div>
         </section>
 
@@ -118,13 +151,32 @@
           <div class="queue-panel">
             <div class="section-heading">
               <div>
-                <p class="section-kicker">Review queue</p>
-                <h2>Cases that need a second look</h2>
+                <p class="section-kicker" data-i18n="queueKicker">复核队列</p>
+                <h2 data-i18n="queueTitle">需要教师进一步确认的记录</h2>
               </div>
-              <div class="segmented-control" aria-label="Filter review cases">
-                <button class="is-selected" type="button" data-filter="all">All</button>
-                <button type="button" data-filter="math">Math</button>
-                <button type="button" data-filter="language">Language</button>
+              <div
+                class="segmented-control"
+                aria-label="筛选复核记录"
+                data-i18n-aria-label="filterAria"
+              >
+                <button
+                  class="is-selected"
+                  type="button"
+                  data-filter="all"
+                  data-i18n="filterAll"
+                >
+                  全部
+                </button>
+                <button type="button" data-filter="math" data-i18n="filterMath">
+                  数学
+                </button>
+                <button
+                  type="button"
+                  data-filter="language"
+                  data-i18n="filterLanguage"
+                >
+                  语文
+                </button>
               </div>
             </div>
 
@@ -138,11 +190,13 @@
               >
                 <span class="case-id">SYN-014</span>
                 <span class="case-main">
-                  <strong>Algebraic reasoning</strong>
-                  <small>Q07 · partial derivation</small>
+                  <strong data-i18n="case014Title">代数推理</strong>
+                  <small data-i18n="case014Note">Q07 · 推导步骤不完整</small>
                 </span>
                 <span class="confidence is-warning">74%</span>
-                <span class="case-status">Notation check</span>
+                <span class="case-status" data-i18n="case014Status">
+                  等价形式确认
+                </span>
                 <i data-lucide="chevron-right" aria-hidden="true"></i>
               </button>
 
@@ -155,11 +209,13 @@
               >
                 <span class="case-id">SYN-022</span>
                 <span class="case-main">
-                  <strong>Short-answer evidence</strong>
-                  <small>Q03 · implicit support</small>
+                  <strong data-i18n="case022Title">简答题证据</strong>
+                  <small data-i18n="case022Note">Q03 · 依据表述隐含</small>
                 </span>
                 <span class="confidence">81%</span>
-                <span class="case-status">Evidence check</span>
+                <span class="case-status" data-i18n="case022Status">
+                  证据确认
+                </span>
                 <i data-lucide="chevron-right" aria-hidden="true"></i>
               </button>
 
@@ -172,11 +228,13 @@
               >
                 <span class="case-id">SYN-031</span>
                 <span class="case-main">
-                  <strong>Unit conversion</strong>
-                  <small>Q09 · final unit omitted</small>
+                  <strong data-i18n="case031Title">单位换算</strong>
+                  <small data-i18n="case031Note">Q09 · 最终单位缺失</small>
                 </span>
                 <span class="confidence">86%</span>
-                <span class="case-status">Score boundary</span>
+                <span class="case-status" data-i18n="case031Status">
+                  得分边界
+                </span>
                 <i data-lucide="chevron-right" aria-hidden="true"></i>
               </button>
 
@@ -189,11 +247,13 @@
               >
                 <span class="case-id">SYN-046</span>
                 <span class="case-main">
-                  <strong>Claim alignment</strong>
-                  <small>Q11 · mixed relevance</small>
+                  <strong data-i18n="case046Title">观点匹配</strong>
+                  <small data-i18n="case046Note">Q11 · 部分内容偏题</small>
                 </span>
                 <span class="confidence">79%</span>
-                <span class="case-status">Rubric alignment</span>
+                <span class="case-status" data-i18n="case046Status">
+                  评分规则匹配
+                </span>
                 <i data-lucide="chevron-right" aria-hidden="true"></i>
               </button>
             </div>
@@ -202,50 +262,56 @@
           <aside class="evidence-panel" aria-live="polite">
             <div class="section-heading">
               <div>
-                <p class="section-kicker">Selected case</p>
+                <p class="section-kicker" data-i18n="selectedCase">当前记录</p>
                 <h2 id="selected-case-title">SYN-014 · Q07</h2>
               </div>
-              <span class="priority-label">Review</span>
+              <span class="priority-label" data-i18n="reviewLabel">待复核</span>
             </div>
 
             <div class="score-line">
               <div>
-                <span>Suggested score</span>
+                <span data-i18n="suggestedScore">建议得分</span>
                 <strong id="suggested-score">7.5 / 10</strong>
               </div>
               <div>
-                <span>Confidence</span>
+                <span data-i18n="confidence">置信度</span>
                 <strong id="selected-confidence">74%</strong>
               </div>
             </div>
 
-            <div class="evidence-trace" aria-label="Evaluation evidence trace">
+            <div
+              class="evidence-trace"
+              aria-label="评分证据链"
+              data-i18n-aria-label="evidenceTraceAria"
+            >
               <div class="trace-step is-complete">
                 <span><i data-lucide="scan-line" aria-hidden="true"></i></span>
                 <div>
-                  <strong>Input quality</strong>
-                  <small id="trace-input">Readable, slight skew corrected</small>
+                  <strong data-i18n="traceInputTitle">输入质量</strong>
+                  <small id="trace-input">图像清晰，轻微倾斜已校正</small>
                 </div>
               </div>
               <div class="trace-step is-complete">
                 <span><i data-lucide="text-search" aria-hidden="true"></i></span>
                 <div>
-                  <strong>OCR evidence</strong>
-                  <small id="trace-ocr">Method and final value recovered</small>
+                  <strong data-i18n="traceOcrTitle">OCR 证据</strong>
+                  <small id="trace-ocr">已识别解题方法与最终结果</small>
                 </div>
               </div>
               <div class="trace-step is-complete">
                 <span><i data-lucide="list-tree" aria-hidden="true"></i></span>
                 <div>
-                  <strong>Rubric match</strong>
-                  <small id="trace-rubric">3 of 4 generic criteria supported</small>
+                  <strong data-i18n="traceRubricTitle">评分规则匹配</strong>
+                  <small id="trace-rubric">
+                    4 个通用评分点中有 3 个具备证据
+                  </small>
                 </div>
               </div>
               <div class="trace-step is-current">
                 <span><i data-lucide="user-check" aria-hidden="true"></i></span>
                 <div>
-                  <strong>Human decision</strong>
-                  <small id="trace-review">Confirm notation-equivalent step</small>
+                  <strong data-i18n="traceReviewTitle">教师决策</strong>
+                  <small id="trace-review">确认该步骤是否为等价表达</small>
                 </div>
               </div>
             </div>
@@ -253,11 +319,11 @@
             <div class="decision-actions">
               <button class="button-secondary" type="button" id="needs-context">
                 <i data-lucide="message-square-more" aria-hidden="true"></i>
-                Add note
+                <span data-i18n="addNote">添加备注</span>
               </button>
               <button class="button-primary" type="button" id="confirm-case">
                 <i data-lucide="check" aria-hidden="true"></i>
-                Confirm review
+                <span data-i18n="confirmReview">确认复核</span>
               </button>
             </div>
             <p class="action-feedback" id="action-feedback" role="status"></p>
@@ -267,13 +333,16 @@
         <section class="architecture-band" id="evaluation">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">System boundary</p>
-              <h2>Traceable decisions, replaceable models</h2>
+              <p class="section-kicker" data-i18n="architectureKicker">
+                系统边界
+              </p>
+              <h2 data-i18n="architectureTitle">决策可追溯，模型可替换</h2>
             </div>
             <a
-              href="https://github.com/knightsccc/ai-exam-grading-showcase#system-design"
+              id="architecture-link"
+              href="https://github.com/knightsccc/ai-exam-grading-showcase#系统设计"
             >
-              Architecture notes
+              <span data-i18n="architectureLink">查看架构说明</span>
               <i data-lucide="arrow-up-right" aria-hidden="true"></i>
             </a>
           </div>
@@ -281,26 +350,34 @@
           <div class="architecture-flow">
             <div>
               <i data-lucide="file-scan" aria-hidden="true"></i>
-              <strong>Document intake</strong>
-              <span>Privacy and input-quality checks</span>
+              <strong data-i18n="architectureIntake">试卷接入</strong>
+              <span data-i18n="architectureIntakeNote">
+                隐私检查与输入质量检查
+              </span>
             </div>
             <i data-lucide="arrow-right" aria-hidden="true"></i>
             <div>
               <i data-lucide="cpu" aria-hidden="true"></i>
-              <strong>Model services</strong>
-              <span>OpenAI-compatible or local vLLM</span>
+              <strong data-i18n="architectureModels">模型服务</strong>
+              <span data-i18n="architectureModelsNote">
+                OpenAI 兼容接口或本地 vLLM
+              </span>
             </div>
             <i data-lucide="arrow-right" aria-hidden="true"></i>
             <div>
               <i data-lucide="scale" aria-hidden="true"></i>
-              <strong>Evaluation layer</strong>
-              <span>Rubric evidence and review routing</span>
+              <strong data-i18n="architectureEvaluation">评分与评测层</strong>
+              <span data-i18n="architectureEvaluationNote">
+                评分证据校验与复核路由
+              </span>
             </div>
             <i data-lucide="arrow-right" aria-hidden="true"></i>
             <div>
               <i data-lucide="clipboard-check" aria-hidden="true"></i>
-              <strong>Human decision</strong>
-              <span>Auditable confirmation and export</span>
+              <strong data-i18n="architectureHuman">教师决策</strong>
+              <span data-i18n="architectureHumanNote">
+                可审计的确认与结果导出
+              </span>
             </div>
           </div>
         </section>
@@ -308,36 +385,32 @@
         <section class="principles-band" id="privacy">
           <article>
             <i data-lucide="shield" aria-hidden="true"></i>
-            <h3>Privacy by deployment</h3>
-            <p>
-              Sensitive workflows can route OCR and evaluation through local
-              model services instead of public endpoints.
+            <h3 data-i18n="principlePrivacy">以部署保障隐私</h3>
+            <p data-i18n="principlePrivacyCopy">
+              敏感场景可将 OCR 与评测任务路由到本地模型服务，避免经过公共接口。
             </p>
           </article>
           <article>
             <i data-lucide="git-compare-arrows" aria-hidden="true"></i>
-            <h3>Models are replaceable</h3>
-            <p>
-              A backend abstraction keeps product logic independent from a
-              single provider or model family.
+            <h3 data-i18n="principleModels">模型后端可替换</h3>
+            <p data-i18n="principleModelsCopy">
+              通过统一后端接口，使业务逻辑不依赖单一服务商或模型系列。
             </p>
           </article>
           <article>
             <i data-lucide="badge-check" aria-hidden="true"></i>
-            <h3>Humans own the result</h3>
-            <p>
-              Uncertain or conflicting evidence is routed to review instead
-              of being hidden behind a single score.
+            <h3 data-i18n="principleHuman">最终结果由教师确认</h3>
+            <p data-i18n="principleHumanCopy">
+              不确定或相互冲突的证据进入复核队列，而不是隐藏在单一分数之后。
             </p>
           </article>
         </section>
 
         <footer>
-          <p>
-            Public portfolio artifact. No student data, production prompts,
-            grading policies, or thesis source code are included.
+          <p data-i18n="footerBoundary">
+            公开脱敏项目展示，不包含学生数据、生产提示词、真实评分策略或毕业论文源码。
           </p>
-          <span>Built by Hao · 2026</span>
+          <span data-i18n="footerCredit">Hao 制作 · 2026</span>
         </footer>
       </main>
     </div>

@@ -1,4 +1,4 @@
-@import url("https://fonts.bunny.net/css?family=ibm-plex-mono:500|manrope:400,500,600,700|source-serif-4:600,700");
+@import url("https://fonts.bunny.net/css?family=ibm-plex-mono:500|manrope:400,500,600,700|noto-sans-sc:400,500,600,700|source-serif-4:600,700");
 
 :root {
   color-scheme: light;
@@ -18,7 +18,9 @@
   --shadow: 0 10px 24px rgba(31, 49, 41, 0.07);
   --radius: 6px;
   --sidebar-width: 236px;
-  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-family:
+    "Manrope", "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI",
+    sans-serif;
 }
 
 * {
@@ -114,6 +116,33 @@ a:focus-visible {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.language-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(38px, 1fr));
+  padding: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.language-switch button {
+  height: 28px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.language-switch button.is-selected {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 2px 6px rgba(31, 49, 41, 0.08);
 }
 
 .synthetic-label {
@@ -280,6 +309,14 @@ h1 {
   letter-spacing: 0;
 }
 
+html[lang="zh-CN"] h1,
+html[lang="zh-CN"] .section-heading h2,
+html[lang="zh-CN"] .principles-band h3 {
+  font-family:
+    "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
 .intro-copy {
   max-width: 680px;
   margin: 0;
@@ -345,6 +382,10 @@ h1 {
   color: var(--green);
   font-family: "Manrope", sans-serif !important;
   font-size: 21px !important;
+}
+
+.state-value b {
+  font: inherit;
 }
 
 .state-value span {
@@ -980,6 +1021,20 @@ footer span {
   footer {
     flex-direction: column;
     padding: 24px 20px 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand > span:last-child {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 8px;
+  }
+
+  .language-switch button {
+    padding: 0 6px;
   }
 }
 

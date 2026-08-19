@@ -1,122 +1,100 @@
-# TraceGrade
+# TraceGrade 智能试卷批阅与大模型评测系统
 
-**A public portfolio showcase for a privacy-conscious, human-in-the-loop
-AI exam evaluation system.**
+**面向隐私敏感场景的 AI 智能阅卷公开展示，强调评分证据、人工复核和模型可替换性。**
 
-[Open the interactive showcase](https://knightsccc.github.io/ai-exam-grading-showcase/)
+[在线体验](https://knightsccc.github.io/ai-exam-grading-showcase/) ·
+[English](README_EN.md)
 
-![TraceGrade synthetic evaluation workspace](assets/showcase-dashboard.png)
+![TraceGrade 合成数据评测工作台](assets/showcase-dashboard.png)
 
-> This is not the production or graduate thesis repository. It contains no
-> student records, real exam content, production prompts, scoring policies,
-> research datasets, deployment credentials, or private Git history.
+> 本仓库不是生产项目或毕业论文源码。仓库不包含学生信息、真实试卷、生产提示词、具体评分策略、研究数据、部署凭据或私有 Git 历史。
 
-## What this demonstrates
+## 项目展示内容
 
-- End-to-end workflow design for document intake, OCR, rubric-based
-  assessment, model evaluation, and human confirmation
-- Python and FastAPI backend engineering
-- React-based operational interfaces for repeated review work
-- OpenAI-compatible model integration with optional local vLLM deployment
-- Human-in-the-loop review, evidence tracing, audit logs, and export workflows
-- Evaluation and regression practices supported by 90+ automated test modules
-  in the private codebase
+- 串联试卷接入、输入质量检查、OCR、评分规则、大模型判断和人工确认的端到端工作流
+- 基于 Python、FastAPI 的后端工程实践
+- 基于 React、TypeScript 的高频阅卷与复核操作台
+- 同时支持第三方 OpenAI 兼容接口和本地 vLLM 模型服务
+- 覆盖证据追踪、异常路由、人工复核、审计记录和结果导出
+- 私有工程维护 90+ 个自动化测试模块，用于评分规则、任务编排、数据校验和回归检查
 
-The interactive page uses only synthetic `SYN-*` cases.
+在线演示只使用 `SYN-*` 合成案例，不包含任何真实学生或试卷数据。
 
-## System design
+## 系统设计
 
 ```mermaid
 flowchart LR
-    A[Exam intake] --> B[Input quality checks]
-    B --> C[OCR service]
-    C --> D[Structured answer evidence]
-    D --> E[Rubric evaluation]
-    E --> F{Review routing}
-    F -->|supported evidence| G[Provisional result]
-    F -->|uncertain or conflicting| H[Human review]
-    H --> I[Auditable final result]
+    A[试卷接入] --> B[输入质量检查]
+    B --> C[OCR 服务]
+    C --> D[结构化答题证据]
+    D --> E[评分规则与模型判断]
+    E --> F{复核路由}
+    F -->|证据充分| G[暂定结果]
+    F -->|不确定或冲突| H[人工复核]
+    H --> I[可审计最终结果]
     G --> I
 
-    J[OpenAI-compatible API] -. replaceable model backend .-> C
-    J -. replaceable model backend .-> E
-    K[Local vLLM] -. privacy-preserving backend .-> C
-    K -. privacy-preserving backend .-> E
+    J[OpenAI 兼容接口] -. 可替换模型后端 .-> C
+    J -. 可替换模型后端 .-> E
+    K[本地 vLLM] -. 隐私模式 .-> C
+    K -. 隐私模式 .-> E
 ```
 
-The private implementation separates model access from product logic. This
-allows OCR and evaluation services to switch between third-party compatible
-APIs and local inference while preserving the same workflow contract.
+私有工程将模型访问层与业务逻辑解耦。OCR 与评测服务可以在第三方兼容接口和本地推理服务之间切换，同时保持一致的业务流程契约。
 
-## Engineering focus
+## 工程重点
 
-### Evidence before automation
+### 证据优先于自动化
 
-A model score is not treated as a sufficient explanation. The workflow keeps
-input-quality findings, OCR evidence, criterion-level support, confidence, and
-review reasons visible to the person making the final decision.
+模型给出的分数不被直接视为充分解释。系统保留输入质量、OCR 结果、评分点证据、置信度和复核原因，让教师能够查看分数依据。
 
-### Human ownership
+### 最终结果由教师确认
 
-Low-confidence and conflicting cases enter a review queue. Review decisions
-are recorded as explicit events instead of silently overwriting model output.
+低置信度、格式异常和证据冲突的记录进入复核队列。人工决策以明确的审计事件保存，而不是直接覆盖模型输出。
 
-### Privacy by deployment
+### 通过部署方式保护隐私
 
-Sensitive exam workflows can be restricted to local or private-network model
-services. Public providers are replaceable rather than embedded in the
-grading logic.
+敏感试卷的 OCR 和评测任务可以限制在本地或内网模型服务中。公共模型接口是可替换后端，不与评分业务逻辑绑定。
 
-### Evaluation discipline
+### 可复现的模型评测
 
-The private codebase includes teacher-calibrated samples, replay-based
-comparison, failure taxonomy, holdout discipline, and automated regression
-coverage. Detailed datasets, thresholds, and reports remain private while the
-graduate thesis is in progress.
+私有工程包含教师确认样本、离线重放、模型对比、失败分类、留出集评测和自动化回归检查。毕业设计进行期间，详细数据集、阈值和实验报告保持私有。
 
-## Safe code sample
+## 脱敏代码示例
 
-[`examples/evaluation_contract.py`](examples/evaluation_contract.py) provides
-a small, generic Python contract for model assessments and review decisions.
-It was written specifically for this public portfolio and contains no private
-scoring logic.
+[`examples/evaluation_contract.py`](examples/evaluation_contract.py) 提供一个精简、通用的 Python 评测结果与人工复核契约。该文件专门为公开展示编写，不包含私有评分逻辑。
 
-Run its tests with:
+运行测试：
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## Technology
+## 技术栈
 
-| Area | Private implementation |
+| 方向 | 私有工程实现 |
 | --- | --- |
-| Backend | Python, FastAPI |
-| Frontend | React, TypeScript |
-| Storage | SQLite / MySQL |
-| AI integration | OpenAI-compatible APIs, local vLLM |
-| Evaluation | Rubric evidence, replay analysis, human review |
-| Delivery | Linux services, controlled local deployment |
+| 后端 | Python、FastAPI |
+| 前端 | React、TypeScript |
+| 数据存储 | SQLite / MySQL |
+| 模型接入 | OpenAI 兼容接口、本地 vLLM |
+| 评分与评测 | 评分点证据、离线重放、人工复核 |
+| 部署 | Linux 服务、受控本地部署 |
 
-## Resume summary
+## 简历项目描述
 
 ```text
-AI-Powered Exam Grading System | Independent Graduate Thesis Project
-Python, FastAPI, React, SQLite/MySQL, vLLM, LLM Evaluation
+智能试卷批阅与大模型评测系统｜独立毕业设计项目
+Python、FastAPI、React、SQLite/MySQL、vLLM、大模型评测
 
-- Built an end-to-end OCR and LLM-assisted grading workflow covering document
-  segmentation, recognition, rubric-based assessment, and human review.
-- Designed evidence tracing and teacher-calibrated evaluation workflows for
-  identifying uncertain, incomplete, or conflicting model outputs.
-- Implemented a local privacy mode for processing sensitive exam data with
-  on-premise vLLM services.
-- Maintained 90+ automated test modules covering grading behavior, pipeline
-  orchestration, data validation, and regression risk.
+- 构建覆盖试卷切分、OCR、评分规则、大模型辅助判断与人工复核的端到端工作流。
+- 设计评分证据追踪和教师确认样本评测流程，识别不确定、不完整或相互冲突的模型输出。
+- 实现本地隐私模式，通过本地 vLLM 服务处理敏感试卷数据。
+- 维护 90+ 个自动化测试模块，覆盖评分行为、任务编排、数据校验和回归风险。
 ```
 
-## Repository boundary
+## 公开边界
 
-See [the public portfolio boundary](docs/portfolio-scope.md) and
-[the copyright notice](NOTICE.md).
+详细范围见[公开项目边界](docs/portfolio-scope.md)和[版权说明](NOTICE.md)。
 
 Copyright (c) 2026 Hao. All rights reserved.
